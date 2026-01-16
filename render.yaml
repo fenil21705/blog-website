@@ -1,0 +1,21 @@
+
+# Render Build/Deploy configuration
+services:
+  # The Backend Service
+  - type: web
+    name: blog-backend
+    runtime: node
+    region: singapore # Optional, pick closest to you
+    repo: https://github.com/fenil21705/blog-website
+    branch: main
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 10000
+    disk:
+      name: sqlite-data
+      mountPath: /data
+      sizeGB: 1
+
