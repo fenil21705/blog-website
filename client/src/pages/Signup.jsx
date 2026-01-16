@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import API_URL from '../config';
 import { motion } from 'framer-motion';
 import { Mail, Lock, User, Feather, ArrowRight, Eye, EyeOff } from 'lucide-react';
 
@@ -32,7 +33,7 @@ const Signup = () => {
 
         setLoading(true);
         try {
-            const { data } = await axios.post('http://localhost:5000/api/auth/register', {
+            const { data } = await axios.post(`${API_URL}/api/auth/register`, {
                 username: formData.username,
                 email: formData.email,
                 password: formData.password

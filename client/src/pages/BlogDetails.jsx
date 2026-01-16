@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import API_URL from '../config';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { ArrowLeft, User, Calendar, Share2, Instagram, Twitter, Linkedin, Clock, Heart, MessageSquare, Send, Trash2 } from 'lucide-react';
 import { format } from 'date-fns';
@@ -36,12 +37,12 @@ const BlogDetails = () => {
         window.scrollTo(0, 0);
         const fetchBlog = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/api/blogs/${slug}`);
-                setBlog(data);
+                const { data: blogData } = await axios.get(`${API_URL}/api/blogs/${slug}`);
+                setBlog(blogData);
 
                 // Fetch likes and comments after blog is loaded
                 const token = localStorage.getItem('token');
-                const interactionRes = await axios.get(`http://localhost:5000/api/blogs/${data.id}/interactions`, {
+                const interactionRes = await axios.get(`${API_URL}/api/blogs/${blogData.id}/interactions`, {
                     headers: token ? { Authorization: `Bearer ${token}` } : {}
                 });
                 setInteractions(interactionRes.data);
@@ -63,7 +64,7 @@ const BlogDetails = () => {
         }
 
         try {
-            const { data } = await axios.post(`http://localhost:5000/api/blogs/${blog.id}/like`, {}, {
+            const { data } = await axios.post(`${API_URL}/api/blogs/${blog.id}/like`, {}, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
             setInteractions(prev => ({
@@ -86,7 +87,7 @@ const BlogDetails = () => {
 
         setIsSubmitting(true);
         try {
-            const { data } = await axios.post(`http://localhost:5000/api/blogs/${blog.id}/comment`, { content: commentText }, {
+            const { data } = await axios.post(`${API_URL}/api/blogs/${blog.id}/comments`, { content: commentText }, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
             setInteractions(prev => ({
@@ -127,7 +128,7 @@ const BlogDetails = () => {
                 <div style={{ position: 'absolute', inset: 0, zIndex: -1 }}>
                     {blog.featuredImage ? (
                         <img
-                            src={blog.featuredImage.startsWith('/') ? `http://localhost:5000${blog.featuredImage}` : blog.featuredImage}
+                            src={blog.featuredImage.startsWith('/') ? `${API_URL}${blog.featuredImage}` : blog.featuredImage}
                             alt={blog.title || 'Blog Image'}
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                         />

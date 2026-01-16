@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import API_URL from '../config';
 import { motion } from 'framer-motion';
 import { Mail, Lock, Feather, ArrowRight, Eye, EyeOff } from 'lucide-react';
 
@@ -17,7 +18,7 @@ const Login = () => {
         setError('');
         setLoading(true);
         try {
-            const { data } = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+            const { data } = await axios.post(`${API_URL}/api/auth/login`, { email, password });
             localStorage.setItem('token', data.token);
             localStorage.setItem('userInfo', JSON.stringify(data));
             window.dispatchEvent(new Event('authChange'));

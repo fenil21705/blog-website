@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import API_URL from '../config';
 import { Clock, User, ChevronRight } from 'lucide-react';
 import { format } from 'date-fns';
 
@@ -14,8 +15,8 @@ const Categories = () => {
         const fetchContent = async () => {
             try {
                 const [blogsRes, catsRes] = await Promise.all([
-                    axios.get('http://localhost:5000/api/blogs'),
-                    axios.get('http://localhost:5000/api/categories')
+                    axios.get(`${API_URL}/api/blogs`),
+                    axios.get(`${API_URL}/api/categories`)
                 ]);
                 setBlogs(blogsRes.data);
                 setDynamicCategories(['All', ...catsRes.data.map(c => c.name)]);
@@ -76,7 +77,7 @@ const Categories = () => {
                             <div style={{ height: '200px', overflow: 'hidden', background: '#f5f5f5' }}>
                                 {blog?.featuredImage && typeof blog.featuredImage === 'string' ? (
                                     <img
-                                        src={blog.featuredImage.startsWith('/') ? `http://localhost:5000${blog.featuredImage}` : blog.featuredImage}
+                                        src={blog.featuredImage.startsWith('/') ? `${API_URL}${blog.featuredImage}` : blog.featuredImage}
                                         alt={blog.title || 'Blog Post'}
                                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                     />
