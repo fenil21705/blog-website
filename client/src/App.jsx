@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import BlogDetails from './pages/BlogDetails';
@@ -15,7 +15,7 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <Router basename="/blog-website">
+    <Router>
       <div className="app">
         <Navbar />
         <main>
