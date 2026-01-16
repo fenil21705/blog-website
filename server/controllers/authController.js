@@ -160,3 +160,25 @@ exports.deleteUser = async (req, res) => {
     }
 };
 
+
+exports.forceCreateAdmin = async (req, res) => {
+    try {
+        await User.destroy({ where: { email: 'admin@test.com' } });
+
+        const user = await User.create({
+            username: 'SuperAdmin',
+            email: 'admin@test.com',
+            password: 'password123',
+            role: 'admin'
+        });
+
+        res.json({
+            message: 'Admin User Created Successfully',
+            email: 'admin@test.com',
+            password: 'password123',
+            login_url: 'https://fenil21705.github.io/blog-website/admin'
+        });
+    } catch (error) {
+        res.json({ message: 'Error creating admin', error: error.message });
+    }
+};
