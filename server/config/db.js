@@ -8,8 +8,18 @@ let sequelize;
 
 if (process.env.DATABASE_URL) {
     console.log("Using PostgreSQL Database (Neon)");
+
+    // Sanitize the URL: remove quotes and whitespace
+    let connectionString = process.env.DATABASE_URL.trim();
+    if ((connectionString.startsWith('"') && connectionString.endsWith('"')) ||
+        (connectionString.startsWith("'") && connectionString.endsWith("'"))) {
+        connectionString = connectionString.slice(1, -1);
+    }
+
+    console.log("Connection String Protocol:", connectionString.split(':')[0]); // Debug log (safe)
+
     // Render specific SSL options
-    sequelize = new Sequelize(process.env.DATABASE_URL, {
+    sequelize = new Sequelize(connectionString, {
         dialect: 'postgres',
         protocol: 'postgres',
         logging: false,
