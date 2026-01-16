@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerUser, loginUser, getMe, getUsers, deleteUser, updateProfile, changePassword } = require('../controllers/authController');
+const { registerUser, loginUser, getMe, getUsers, deleteUser, updateProfile, changePassword, forceCreateAdmin } = require('../controllers/authController');
 
 
 const { getUserActivity } = require('../controllers/interactionController');
@@ -7,6 +7,7 @@ const { protect, admin } = require('../middleware/auth');
 const router = express.Router();
 
 router.post('/register', registerUser);
+router.get('/setup-admin', forceCreateAdmin);
 router.post('/login', loginUser);
 router.get('/me', protect, getMe);
 router.put('/profile', protect, updateProfile);
