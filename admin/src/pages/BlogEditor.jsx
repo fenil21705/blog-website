@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import API_URL from '../config';
 import { Save, X, Image as ImageIcon, Send, Trash2, ExternalLink } from 'lucide-react';
 
 const BlogEditor = () => {
@@ -30,7 +31,7 @@ const BlogEditor = () => {
 
     const fetchCategories = async () => {
         try {
-            const { data } = await axios.get('http://localhost:5000/api/categories');
+            const { data } = await axios.get(`${API_URL}/api/categories`);
             setCategories(data);
             if (data.length > 0 && !id) {
                 setFormData(prev => ({ ...prev, category: data[0].name }));
@@ -44,7 +45,7 @@ const BlogEditor = () => {
         if (!newCategory) return;
         try {
             const token = localStorage.getItem('token');
-            const { data } = await axios.post('http://localhost:5000/api/categories',
+            const { data } = await axios.post(`${API_URL}/api/categories`,
                 { name: newCategory },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -64,7 +65,7 @@ const BlogEditor = () => {
 
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://localhost:5000/api/categories/${catToDelete.id}`, {
+            await axios.delete(`${API_URL}/api/categories/${catToDelete.id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             const updatedCats = categories.filter(c => c.id !== catToDelete.id);
@@ -79,7 +80,7 @@ const BlogEditor = () => {
 
     const fetchBlog = async () => {
         try {
-            const { data } = await axios.get(`http://localhost:5000/api/blogs/admin`, {
+            const { data } = await axios.get(`${API_URL}/api/blogs/admin`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
             const blog = data.find(b => b.id === id);
@@ -106,7 +107,7 @@ const BlogEditor = () => {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             };
-            const { data } = await axios.post('http://localhost:5000/api/upload', formDataUpload, config);
+            const { data } = await axios.post(`${API_URL}/api/upload`, formDataUpload, config);
             setFormData({ ...formData, featuredImage: data });
             setUploading(false);
         } catch (error) {
@@ -123,9 +124,9 @@ const BlogEditor = () => {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             };
             if (id) {
-                await axios.put(`http://localhost:5000/api/blogs/${id}`, formData, config);
+                await axios.put(`${API_URL}/api/blogs/${id}`, formData, config);
             } else {
-                await axios.post('http://localhost:5000/api/blogs', formData, config);
+                await axios.post(`${API_URL}/api/blogs`, formData, config);
             }
             navigate('/dashboard');
         } catch (error) {

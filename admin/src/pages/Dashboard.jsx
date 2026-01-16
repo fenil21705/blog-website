@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../config';
 import { FileText, Users, MessageSquare, Heart, TrendingUp, Clock, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +12,7 @@ const Dashboard = () => {
         const fetchStats = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const { data } = await axios.get('http://localhost:5000/api/admin/stats', {
+                const { data } = await axios.get(`${API_URL}/api/admin/stats`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setData(data);

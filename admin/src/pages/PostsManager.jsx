@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../config';
 import { Edit, Trash2, Eye, PlusCircle, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -15,7 +16,7 @@ const PostsManager = () => {
     const fetchBlogs = async () => {
         try {
             const token = localStorage.getItem('token');
-            const { data } = await axios.get('http://localhost:5000/api/blogs/admin', {
+            const { data } = await axios.get(`${API_URL}/api/blogs/admin`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setBlogs(data);
@@ -38,7 +39,7 @@ const PostsManager = () => {
         if (window.confirm('Are you sure you want to delete this post?')) {
             try {
                 const token = localStorage.getItem('token');
-                await axios.delete(`http://localhost:5000/api/blogs/${id}`, {
+                await axios.delete(`${API_URL}/api/blogs/${id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 fetchBlogs();

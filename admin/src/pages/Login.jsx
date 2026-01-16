@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import API_URL from '../config';
 import { Feather } from 'lucide-react';
 
 const Login = () => {
@@ -12,7 +13,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+            const { data } = await axios.post(`${API_URL}/api/auth/login`, { email, password });
             if (data.role !== 'admin') {
                 setError('Access denied. Admin only.');
                 return;

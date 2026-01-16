@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../config';
 import { Trash2, User, Mail, Shield, Calendar } from 'lucide-react';
 import { format } from 'date-fns';
 
@@ -15,7 +16,7 @@ const UsersManager = () => {
     const fetchUsers = async () => {
         try {
             const token = localStorage.getItem('token');
-            const { data } = await axios.get('http://localhost:5000/api/auth', {
+            const { data } = await axios.get(`${API_URL}/api/admin/users`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setUsers(data);
@@ -42,7 +43,7 @@ const UsersManager = () => {
 
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://localhost:5000/api/auth/${id}`, {
+            await axios.delete(`${API_URL}/api/admin/users/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setUsers(users.filter(u => u.id !== id));

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../config';
 import { Trash2, Plus, AlertCircle } from 'lucide-react';
 
 const CategoriesManager = () => {
@@ -14,7 +15,7 @@ const CategoriesManager = () => {
 
     const fetchCategories = async () => {
         try {
-            const { data } = await axios.get('http://localhost:5000/api/categories');
+            const { data } = await axios.get(`${API_URL}/api/categories`);
             setCategories(data);
             setLoading(false);
         } catch (error) {
@@ -29,7 +30,7 @@ const CategoriesManager = () => {
         if (!newCategory) return;
         try {
             const token = localStorage.getItem('token');
-            const { data } = await axios.post('http://localhost:5000/api/categories',
+            const { data } = await axios.post(`${API_URL}/api/categories`,
                 { name: newCategory },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -45,7 +46,7 @@ const CategoriesManager = () => {
         if (!window.confirm('Are you sure? This will not delete posts but they will lose this category reference.')) return;
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://localhost:5000/api/categories/${id}`, {
+            await axios.delete(`${API_URL}/api/categories/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setCategories(categories.filter(cat => cat.id !== id));
