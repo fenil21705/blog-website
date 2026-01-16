@@ -34,15 +34,20 @@ app.get('/', (req, res) => {
 });
 
 // Sync Database & Start Server
+// Sync Database & Start Server
 const PORT = process.env.PORT || 5000;
 
-sequelize.sync()
-    .then(() => {
-        console.log('Database synced');
-        app.listen(PORT, () => {
-            console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+if (require.main === module) {
+    sequelize.sync()
+        .then(() => {
+            console.log('Database synced');
+            app.listen(PORT, () => {
+                console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+            });
+        })
+        .catch((err) => {
+            console.error('Error syncing database:', err);
         });
-    })
-    .catch((err) => {
-        console.error('Error syncing database:', err);
-    });
+}
+
+module.exports = app;
