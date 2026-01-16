@@ -28,6 +28,7 @@ if (process.env.DATABASE_URL) {
     // Render specific SSL options
     sequelize = new Sequelize(connectionString, {
         dialect: 'postgres',
+        dialectModule: require('pg'), // Explicitly require pg for Vercel
         protocol: 'postgres',
         logging: false,
         dialectOptions: {
