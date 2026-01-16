@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import PostsManager from './pages/PostsManager';
@@ -16,7 +16,7 @@ const PrivateRoute = ({ children }) => {
 
 function App() {
   return (
-    <Router basename="/blog-website/admin">
+    <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route
