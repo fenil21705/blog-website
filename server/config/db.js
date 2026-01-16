@@ -6,10 +6,9 @@ require('dotenv').config();
 // This creates a 'database.sqlite' file in the server directory
 const sequelize = new Sequelize({
     dialect: 'sqlite',
-    // On Render with a Disk, we mount to /data. Locally, use the project folder.
-    storage: process.env.RENDER || process.env.NODE_ENV === 'production'
-        ? '/data/database.sqlite'
-        : path.join(__dirname, '../database.sqlite'),
+    // On Render Free Tier, we cannot use /data (failed with EACCES).
+    // Use a local path instead. Note: Data clears on restart in Free Tier.
+    storage: path.join(__dirname, '../database.sqlite'),
     logging: false,
 });
 
