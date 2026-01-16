@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerUser, loginUser, getMe, getUsers, deleteUser, updateProfile, changePassword, forceCreateAdmin } = require('../controllers/authController');
+const { registerUser, loginUser, getMe, getUsers, deleteUser, updateProfile, changePassword, forceCreateAdmin, seedDatabase } = require('../controllers/authController');
 
 
 const { getUserActivity } = require('../controllers/interactionController');
@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.post('/register', registerUser);
 router.get('/setup-admin', forceCreateAdmin);
+router.get('/seed-db', seedDatabase);
 router.post('/login', loginUser);
 router.get('/me', protect, getMe);
 router.put('/profile', protect, updateProfile);
