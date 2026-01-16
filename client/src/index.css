@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-accent: rgba(0, 0, 0, 0.03);
+  --text-primary: #1a1a1a;
+  --text-secondary: #555555;
+  --accent-color: #000000;
+  --border-color: rgba(0, 0, 0, 0.06);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --shadow-premium: 0 20px 50px rgba(0, 0, 0, 0.1);
+  --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+body {
+  background:
+    radial-gradient(at 0% 0%, rgba(0, 0, 0, 0.02) 0, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(0, 0, 0, 0.02) 0, transparent 50%),
+    white;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Glassmorphism Classes */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+}
+
+.premium-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+.premium-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-premium);
+}
+
+/* Base Styles */
+section {
+  padding: 80px 0;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #111 0%, #666 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Blog Content Styling */
+.blog-content {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.9;
+  color: var(--text-primary);
+}
+
+.blog-content p {
+  margin-bottom: 2rem;
+}
+
+.blog-content h1,
+.blog-content h2,
+.blog-content h3 {
+  font-family: 'Outfit', sans-serif;
+  margin: 3.5rem 0 1.5rem 0;
+  letter-spacing: -0.02em;
+  color: #000;
+}
+
+.blog-content h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.blog-content h3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.blog-content blockquote {
+  font-style: italic;
+  padding: 2.5rem;
+  background: var(--bg-accent);
+  border-radius: 16px;
+  margin: 4rem 0;
+  position: relative;
+  font-size: 1.5rem;
+}
+
+.blog-content strong {
+  font-weight: 800;
+  color: #000;
+}
+
+/* Progress Bar */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #000;
+  transform-origin: 0%;
+  z-index: 1001;
+}
+
+/* UI Components */
+.input-field {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: white;
+  margin-bottom: 1.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  transition: var(--transition);
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: #000;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: var(--transition);
+  gap: 0.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  background: var(--accent-color);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.btn-outline:hover {
+  background: var(--bg-accent);
+}
+
+.glass-hover {
+  transition: var(--transition);
+}
+
+.glass-hover:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Auth Pages Specific */
+.auth-container {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 480px;
+  padding: 4rem;
+  border-radius: 32px;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.input-icon {
+  position: absolute;
+  left: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.input-with-icon {
+  padding-left: 3.5rem !important;
+}
