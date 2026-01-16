@@ -16,7 +16,7 @@ const UsersManager = () => {
     const fetchUsers = async () => {
         try {
             const token = localStorage.getItem('token');
-            const { data } = await axios.get(`${API_URL}/api/admin/users`, {
+            const { data } = await axios.get(`${API_URL}/api/auth`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setUsers(data);
@@ -43,7 +43,7 @@ const UsersManager = () => {
 
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`${API_URL}/api/admin/users/${id}`, {
+            await axios.delete(`${API_URL}/api/auth/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setUsers(users.filter(u => u.id !== id));
