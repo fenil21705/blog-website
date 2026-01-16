@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../config';
 import { motion, AnimatePresence } from 'framer-motion';
 import { User, Mail, Calendar, Shield, Edit, Heart, MessageSquare, ChevronRight, X, Check, Loader2, Lock, Key, Eye, EyeOff } from 'lucide-react';
 import { format } from 'date-fns';
@@ -33,8 +34,8 @@ const Profile = () => {
                     return;
                 }
                 const [userRes, activityRes] = await Promise.all([
-                    axios.get('http://localhost:5000/api/auth/me', { headers: { Authorization: `Bearer ${token}` } }),
-                    axios.get('http://localhost:5000/api/auth/activity', { headers: { Authorization: `Bearer ${token}` } })
+                    axios.get(`${API_URL}/api/auth/me`, { headers: { Authorization: `Bearer ${token}` } }),
+                    axios.get(`${API_URL}/api/auth/activity`, { headers: { Authorization: `Bearer ${token}` } })
                 ]);
 
                 setUser(userRes.data);
@@ -60,7 +61,7 @@ const Profile = () => {
         setError('');
         try {
             const token = localStorage.getItem('token');
-            const { data } = await axios.put('http://localhost:5000/api/auth/profile', formData, {
+            const { data } = await axios.put(`${API_URL}/api/auth/profile`, formData, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setUser({ ...user, ...data });
@@ -88,7 +89,7 @@ const Profile = () => {
         setError('');
         try {
             const token = localStorage.getItem('token');
-            await axios.put('http://localhost:5000/api/auth/change-password', {
+            await axios.put(`${API_URL}/api/auth/change-password`, {
                 currentPassword: passwordData.currentPassword,
                 newPassword: passwordData.newPassword
             }, {

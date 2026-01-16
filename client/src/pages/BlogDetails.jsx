@@ -105,7 +105,7 @@ const BlogDetails = () => {
     const handleDeleteComment = async (commentId) => {
         if (!window.confirm('Delete this comment?')) return;
         try {
-            await axios.delete(`http://localhost:5000/api/blogs/comment/${commentId}`, {
+            await axios.delete(`${API_URL}/api/blogs/comment/${commentId}`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
             setInteractions(prev => ({

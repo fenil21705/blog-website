@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import axios from 'axios';
+import API_URL from '../config';
 import { motion } from 'framer-motion';
 import { Clock, User, ArrowRight, Search as SearchIcon } from 'lucide-react';
 import { format } from 'date-fns';
@@ -23,7 +24,7 @@ const SearchResults = () => {
         const fetchResults = async () => {
             setLoading(true);
             try {
-                const { data } = await axios.get('http://localhost:5000/api/blogs');
+                const { data } = await axios.get(`${API_URL}/api/blogs`);
                 // Since there's no dedicated search endpoint yet, we'll filter on frontend
                 const filtered = data.filter(blog =>
                     blog.title.toLowerCase().includes(query?.toLowerCase() || '') ||
@@ -68,7 +69,7 @@ const SearchResults = () => {
                                 <div style={{ height: '240px', overflow: 'hidden', background: '#f5f5f5', borderRadius: '20px' }}>
                                     {blog.featuredImage ? (
                                         <img
-                                            src={blog.featuredImage.startsWith('/') ? `http://localhost:5000${blog.featuredImage}` : blog.featuredImage}
+                                            src={blog.featuredImage.startsWith('/') ? `${API_URL}${blog.featuredImage}` : blog.featuredImage}
                                             alt={blog.title}
                                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                         />
