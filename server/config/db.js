@@ -9,8 +9,15 @@ let sequelize;
 if (process.env.DATABASE_URL) {
     console.log("Using PostgreSQL Database (Neon)");
 
-    // Sanitize the URL: remove quotes and whitespace
+    // Sanitize the URL: remove quotes, whitespace, and "psql" command artifacts
     let connectionString = process.env.DATABASE_URL.trim();
+
+    // Fix common copy-paste error where user copies the entire "psql '...'" command
+    if (connectionString.startsWith("psql '")) {
+        connectionString = connectionString.replace("psql '", "").replace(/'$/, "");
+    }
+
+    // Remove surrounding quotes if they still exist
     if ((connectionString.startsWith('"') && connectionString.endsWith('"')) ||
         (connectionString.startsWith("'") && connectionString.endsWith("'"))) {
         connectionString = connectionString.slice(1, -1);
