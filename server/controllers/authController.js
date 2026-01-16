@@ -219,45 +219,55 @@ exports.seedDatabase = async (req, res) => {
                 content: `<p>Web development is evolving rapidly. From <strong>AI-assisted coding</strong> to the rise of <em>Serverless Architecture</em>, the landscape is changing.</p><p>In this post, we explore how newer frameworks like React 19 and Next.js are shaping the future.</p>`,
                 excerpt: "Explore the latest trends in web development, from AI tools to serverless architectures.",
                 slug: "future-of-web-development",
+                category: "Technology", // Required String Field
                 categoryId: catMap['Technology'],
                 authorId: admin.id,
-                featuredImage: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=2072"
+                featuredImage: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=2072",
+                status: 'published'
             },
             {
                 title: "Minimalism in UI Design",
                 content: `<p>Less is more. That's the mantra of <strong>Minimalism</strong>.</p><p>Good design is not about adding more elements, but about removing the unnecessary ones until only the essential remains.</p>`,
                 excerpt: "Why less is more in modern user interface design and how to achieve it.",
                 slug: "minimalism-in-ui-design",
+                category: "Design",
                 categoryId: catMap['Design'],
                 authorId: admin.id,
-                featuredImage: "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&fit=crop&q=80&w=2070"
+                featuredImage: "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&fit=crop&q=80&w=2070",
+                status: 'published'
             },
             {
                 title: "10 Tips for a Productive Morning",
                 content: `<p>How you start your day determines how the rest of it goes.</p><ul><li>Wake up early</li><li>Drink water</li><li>Exercise</li><li>Plan your day</li></ul>`,
                 excerpt: "Transform your daily routine with these simple yet effective morning habits.",
                 slug: "10-tips-productive-morning",
+                category: "Lifestyle",
                 categoryId: catMap['Lifestyle'],
                 authorId: admin.id,
-                featuredImage: "https://images.unsplash.com/photo-1499750310159-5b5f096fd51b?auto=format&fit=crop&q=80&w=2070"
+                featuredImage: "https://images.unsplash.com/photo-1499750310159-5b5f096fd51b?auto=format&fit=crop&q=80&w=2070",
+                status: 'published'
             },
             {
                 title: "Traveling to Japan: A Guide",
                 content: `<p>Japan is a country of contrasts. From the neon lights of Tokyo to the quiet temples of Kyoto.</p><p>This guide covers everything you need to know before your trip.</p>`,
                 excerpt: "Everything you need to know before visiting the Land of the Rising Sun.",
                 slug: "traveling-to-japan-guide",
+                category: "Travel",
                 categoryId: catMap['Travel'],
                 authorId: admin.id,
-                featuredImage: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=80&w=2070"
+                featuredImage: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=80&w=2070",
+                status: 'published'
             },
             {
                 title: "Understanding React Hooks",
                 content: `<p>Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class.</p>`,
                 excerpt: "A deep dive into useState, useEffect, and custom hooks.",
                 slug: "understanding-react-hooks",
+                category: "Coding",
                 categoryId: catMap['Coding'],
                 authorId: admin.id,
-                featuredImage: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=2070"
+                featuredImage: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=2070",
+                status: 'published'
             }
         ];
 
