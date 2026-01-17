@@ -91,7 +91,12 @@ const seed = async () => {
             // Check if blog exists by slug
             const existing = await Blog.findOne({ where: { slug: b.slug } });
             if (!existing) {
-                await Blog.create(b);
+                // Find the category name for this blog
+                const categoryName = Object.keys(catMap).find(key => catMap[key] === b.categoryId);
+                await Blog.create({
+                    ...b,
+                    category: categoryName || 'Technology' // Fallback to avoid null
+                });
                 console.log(`Created blog: ${b.title}`);
             } else {
                 console.log(`Skipped blog (exists): ${b.title}`);

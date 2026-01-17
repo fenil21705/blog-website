@@ -107,6 +107,12 @@ const Profile = () => {
     };
 
     if (loading) return <div className="container" style={{ padding: '8rem', textAlign: 'center' }}>Loading profile...</div>;
+    if (!user) return (
+        <div className="container" style={{ padding: '8rem', textAlign: 'center' }}>
+            <h2 style={{ marginBottom: '2rem' }}>{error || 'Profile not found'}</h2>
+            <Link to="/login" className="btn btn-primary">Go to Login</Link>
+        </div>
+    );
 
     return (
         <div className="container" style={{ paddingTop: '8rem', paddingBottom: '8rem' }}>
