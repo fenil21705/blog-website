@@ -173,7 +173,7 @@ const BlogDetails = () => {
         <article style={{ paddingBottom: '8rem' }}>
             <motion.div className="progress-bar" style={{ scaleX }} />
 
-            <header style={{ position: 'relative', height: '80vh', display: 'flex', alignItems: 'flex-end', paddingBottom: '6rem' }}>
+            <header className="mobile-header-spacing" style={{ position: 'relative', minHeight: '60vh', display: 'flex', alignItems: 'flex-end', paddingBottom: '4rem', paddingTop: '6rem' }}>
                 <div style={{ position: 'absolute', inset: 0, zIndex: -1 }}>
                     {blog.featuredImage ? (
                         <img
@@ -199,10 +199,10 @@ const BlogDetails = () => {
                         <span style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase', color: '#fff', letterSpacing: '3px', opacity: 0.9 }}>
                             {blog.categoryData?.name || blog.category || 'Uncategorized'}
                         </span>
-                        <h1 style={{ fontSize: '4.5rem', color: '#fff', margin: '1rem 0 2rem 0', lineHeight: 1, fontWeight: 800, letterSpacing: '-0.03em' }}>
+                        <h1 className="hero-title" style={{ color: '#fff', margin: '1rem 0 2rem 0', lineHeight: 1.1, fontWeight: 800, letterSpacing: '-0.03em' }}>
                             {blog.title || 'Untitled'}
                         </h1>
-                        <div style={{ display: 'flex', gap: '3rem', color: '#fff', opacity: 0.9, fontSize: '0.95rem' }}>
+                        <div className="mobile-stack" style={{ display: 'flex', gap: '2rem', color: '#fff', opacity: 0.9, fontSize: '0.9rem', flexWrap: 'wrap' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                                 <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                     <User size={16} />
@@ -267,9 +267,9 @@ const BlogDetails = () => {
 
                         {/* Comments Section */}
                         <section style={{ marginTop: '8rem', borderTop: '1px solid var(--border-color)', paddingTop: '6rem' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '4rem' }}>
+                            <div className="mobile-stack" style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '4rem' }}>
                                 <MessageSquare size={32} />
-                                <h2 style={{ fontSize: '2.5rem', fontWeight: 800 }}>Comments ({interactions.comments.length})</h2>
+                                <h2 className="hero-title" style={{ fontSize: '2.5rem', fontWeight: 800 }}>Comments ({interactions.comments.length})</h2>
                             </div>
 
                             {/* Add Comment Form */}

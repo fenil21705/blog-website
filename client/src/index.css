@@ -62,6 +62,13 @@ button {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
 }
 
 /* Glassmorphism Classes */
@@ -380,3 +387,4 @@ section {
     padding: 4rem 0;
   }
 }
+@media (max-width: 480px) { .mobile-header-spacing { height: auto !important; min-height: 50vh !important; padding-top: 8rem !important; padding-bottom: 3rem !important; } .mobile-stack { flex-direction: column !important; gap: 1rem !important; align-items: flex-start !important; } .mobile-center { text-align: center !important; justify-content: center !important; align-items: center !important; } } .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; } @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; gap: 2rem; } .mobile-hide { display: none !important; } }

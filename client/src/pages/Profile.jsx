@@ -111,8 +111,8 @@ const Profile = () => {
     return (
         <div className="container" style={{ paddingTop: '8rem', paddingBottom: '8rem' }}>
             <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-                <header style={{ marginBottom: '4rem' }}>
-                    <h1 style={{ fontSize: '3.5rem', fontWeight: 800, marginBottom: '1rem' }}>Your Profile</h1>
+                <header className="mobile-center" style={{ marginBottom: '4rem' }}>
+                    <h1 className="hero-title" style={{ fontSize: '3.5rem', fontWeight: 800, marginBottom: '1rem' }}>Your Profile</h1>
                     <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem' }}>Manage your account settings and view your activity.</p>
                 </header>
 
@@ -139,7 +139,7 @@ const Profile = () => {
                     )}
                 </AnimatePresence>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'minmax(300px, 350px) 1fr', gap: '3rem' }}>
+                <div className="grid-2" style={{ gridTemplateColumns: undefined }}>
                     {/* Left Column: User Info Card */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                         <motion.div
@@ -419,7 +419,7 @@ const Profile = () => {
 
                     {/* Right Column: Activity / Stats */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+                        <div className="grid-2" style={{ gap: '2rem', gridTemplateColumns: undefined }}>
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}

@@ -59,7 +59,7 @@ const Home = () => {
 
                 {/* Grid Skeleton */}
                 <section className="container">
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '3rem' }}>
+                    <div className="blog-grid">
                         {[1, 2, 3, 4, 5, 6].map((i) => (
                             <div key={i} className="premium-card" style={{ height: '550px', border: 'none' }}>
                                 <div className="skeleton" style={{ height: '280px', width: '100%' }}></div>
@@ -174,10 +174,10 @@ const Home = () => {
 
             {/* 3. Featured / Latest Blog Posts */}
             <section id="latest" className="container" style={{ marginBottom: '8rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem' }}>
+                <div className="flex-between mobile-stack" style={{ alignItems: 'flex-end', marginBottom: '3rem' }}>
                     <div>
                         <span style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--text-secondary)', letterSpacing: '2px' }}>DISCOVER</span>
-                        <h2 style={{ fontSize: '2.5rem', fontWeight: 800 }}>Latest Stories</h2>
+                        <h2 className="hero-title" style={{ fontSize: '2.5rem', fontWeight: 800 }}>Latest Stories</h2>
                     </div>
                     <Link to="/categories" style={{ color: '#000', fontWeight: 600, fontSize: '0.9rem' }}>View All Posts →</Link>
                 </div>
@@ -223,27 +223,27 @@ const Home = () => {
             </section>
 
             {/* 5. About the Blogger Context */}
-            <section style={{ background: '#fafafa', padding: '8rem 0' }}>
+            <section style={{ background: '#fafafa', padding: '6rem 0' }}>
                 <div className="container">
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '6rem', alignItems: 'center' }}>
+                    <div className="grid-2">
                         <div style={{ position: 'relative' }}>
-                            <div style={{ width: '100%', height: '500px', background: '#eee', borderRadius: '30px', overflow: 'hidden' }}>
+                            <div style={{ width: '100%', height: '400px', background: '#eee', borderRadius: '30px', overflow: 'hidden' }}>
                                 <img
                                     src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&q=80&w=2070"
                                     alt="The Blogger"
                                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                 />
                             </div>
-                            <div className="glass" style={{ position: 'absolute', bottom: '-2rem', right: '-2rem', padding: '2rem', borderRadius: '24px', maxWidth: '300px' }}>
+                            <div className="glass mobile-hide" style={{ position: 'absolute', bottom: '-2rem', right: '-2rem', padding: '2rem', borderRadius: '24px', maxWidth: '300px' }}>
                                 <p style={{ fontSize: '0.9rem', fontStyle: 'italic', color: 'var(--text-secondary)' }}>
                                     "Writing is the geometry of the soul. I share what I learn along the path."
                                 </p>
                             </div>
                         </div>
-                        <div>
+                        <div className="mobile-center">
                             <span style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--text-secondary)', letterSpacing: '2px' }}>THE CURATOR</span>
-                            <h2 style={{ fontSize: '3rem', fontWeight: 800, margin: '1rem 0 2rem 0' }}>Hello, I'm <span className="gradient-text">Julian.</span></h2>
-                            <p style={{ fontSize: '1.2rem', lineHeight: 1.7, color: 'var(--text-secondary)', marginBottom: '2rem' }}>
+                            <h2 style={{ fontSize: '2.5rem', fontWeight: 800, margin: '1rem 0 2rem 0' }}>Hello, I'm <span className="gradient-text">Julian.</span></h2>
+                            <p style={{ fontSize: '1.1rem', lineHeight: 1.7, color: 'var(--text-secondary)', marginBottom: '2rem' }}>
                                 I’m a digital product designer and minimalist based in San Francisco. I write about high-end tech, timeless design principles, and how to build a meaningful digital life in a world of noise.
                             </p>
                             <Link to="/about" className="btn btn-primary" style={{ padding: '1rem 2.5rem', borderRadius: '50px' }}>Full Story</Link>
@@ -280,7 +280,7 @@ const Home = () => {
                     <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '1.1rem', marginBottom: '3rem', maxWidth: '600px', margin: '0 auto 3rem auto' }}>
                         Get the latest stories, design resources, and technology tips delivered directly to your inbox every Sunday.
                     </p>
-                    <form style={{ display: 'flex', gap: '1rem', maxWidth: '500px', margin: '0 auto' }} onSubmit={(e) => { e.preventDefault(); alert('Welcome to the inner circle!') }}>
+                    <form className="mobile-stack" style={{ display: 'flex', gap: '1rem', maxWidth: '500px', margin: '0 auto' }} onSubmit={(e) => { e.preventDefault(); alert('Welcome to the inner circle!') }}>
                         <input
                             type="email"
                             placeholder="your@email.com"
@@ -291,11 +291,12 @@ const Home = () => {
                                 borderRadius: '50px',
                                 padding: '1rem 2rem',
                                 color: '#fff',
-                                outline: 'none'
+                                outline: 'none',
+                                minWidth: '200px'
                             }}
                             required
                         />
-                        <button type="submit" className="btn" style={{ background: '#fff', color: '#000', borderRadius: '50px', padding: '0 2rem', fontWeight: 700 }}>
+                        <button type="submit" className="btn" style={{ background: '#fff', color: '#000', borderRadius: '50px', padding: '0 2rem', fontWeight: 700, whiteSpace: 'nowrap' }}>
                             Join Now
                         </button>
                     </form>

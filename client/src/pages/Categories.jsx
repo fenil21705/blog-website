@@ -37,7 +37,7 @@ const Categories = () => {
                 <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="gradient-text"
+                    className="gradient-text hero-title"
                     style={{ fontSize: '3.5rem', marginBottom: '1rem' }}
                 >
                     Explore by Category
@@ -64,7 +64,7 @@ const Categories = () => {
                 </div>
             </header>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '2rem' }}>
+            <div className="blog-grid" style={{ gap: '2rem' }}>
                 {Array.isArray(filteredBlogs) && filteredBlogs.map((blog, index) => (
                     <motion.div
                         key={blog?.id || index}
