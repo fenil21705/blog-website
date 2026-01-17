@@ -223,8 +223,8 @@ const BlogDetails = () => {
             </header>
 
             <div className="container" style={{ marginTop: '6rem' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 100px) 1fr minmax(0, 100px)', gap: '4rem' }}>
-                    <aside style={{ position: 'sticky', top: '10rem', height: 'fit-content', display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'center' }}>
+                <div className="details-layout">
+                    <aside className="details-sidebar">
                         <div style={{ textAlign: 'center' }}>
                             <button
                                 onClick={handleLike}
@@ -244,11 +244,14 @@ const BlogDetails = () => {
                             <span style={{ fontSize: '0.8rem', fontWeight: 800, marginTop: '0.5rem', display: 'block' }}>{interactions.likesCount}</span>
                         </div>
 
-                        <div style={{ width: '1px', height: '40px', background: 'var(--border-color)', opacity: 0.5 }}></div>
+                        <div className="divider-vertical" style={{ width: '1px', height: '40px', background: 'var(--border-color)', opacity: 0.5 }}></div>
 
-                        <span style={{ fontSize: '0.7rem', fontWeight: 800, orientation: 'vertical', writingMode: 'vertical-rl', transform: 'rotate(180deg)', letterSpacing: '2px', opacity: 0.4 }}>SHARE</span>
-                        <button className="btn-outline glass-hover" style={{ border: 'none', padding: '0.5rem', borderRadius: '50%' }}><Twitter size={20} /></button>
-                        <button className="btn-outline glass-hover" style={{ border: 'none', padding: '0.5rem', borderRadius: '50%' }}><Linkedin size={20} /></button>
+                        <div className="share-controls" style={{ display: 'flex', flexDirection: 'inherit', gap: '1rem', alignItems: 'center' }}>
+                            {/* Only show label on desktop vertical mode */}
+                            <span className="share-label" style={{ fontSize: '0.7rem', fontWeight: 800, orientation: 'vertical', writingMode: 'vertical-rl', transform: 'rotate(180deg)', letterSpacing: '2px', opacity: 0.4 }}>SHARE</span>
+                            <button className="btn-outline glass-hover" style={{ border: 'none', padding: '0.5rem', borderRadius: '50%' }}><Twitter size={20} /></button>
+                            <button className="btn-outline glass-hover" style={{ border: 'none', padding: '0.5rem', borderRadius: '50%' }}><Linkedin size={20} /></button>
+                        </div>
                     </aside>
 
                     <div style={{ maxWidth: '800px' }}>
