@@ -48,20 +48,58 @@ const Home = () => {
 
     if (loading) {
         return (
-            <div className="container" style={{ padding: '10rem 0', textAlign: 'center' }}>
-                <div style={{ marginBottom: '2rem' }}>
-                    <div className="loader" style={{ width: '40px', height: '40px', border: '3px solid #eee', borderTop: '3px solid #000', borderRadius: '50%', margin: '0 auto', animation: 'spin 1s linear infinite' }}></div>
-                    <style>{`@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }`}</style>
-                </div>
-                <h2 style={{ fontSize: '1.5rem', fontWeight: 800 }}>Loading Content...</h2>
+            <div style={{ overflow: 'hidden' }}>
+                {/* Hero Skeleton */}
+                <section style={{ padding: '10rem 0 6rem 0', textAlign: 'center' }}>
+                    <div className="container">
+                        <div className="skeleton" style={{ width: '60%', height: '80px', margin: '0 auto 2rem auto', borderRadius: '12px' }}></div>
+                        <div className="skeleton" style={{ width: '40%', height: '24px', margin: '0 auto 3rem auto', borderRadius: '4px' }}></div>
+                    </div>
+                </section>
+
+                {/* Grid Skeleton */}
+                <section className="container">
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '3rem' }}>
+                        {[1, 2, 3, 4, 5, 6].map((i) => (
+                            <div key={i} className="premium-card" style={{ height: '550px', border: 'none' }}>
+                                <div className="skeleton" style={{ height: '280px', width: '100%' }}></div>
+                                <div style={{ padding: '2rem' }}>
+                                    <div className="skeleton" style={{ width: '30%', height: '16px', marginBottom: '1rem', borderRadius: '4px' }}></div>
+                                    <div className="skeleton" style={{ width: '90%', height: '32px', marginBottom: '1rem', borderRadius: '8px' }}></div>
+                                    <div className="skeleton" style={{ width: '80%', height: '32px', marginBottom: '1.5rem', borderRadius: '8px' }}></div>
+                                    <div className="skeleton" style={{ width: '100%', height: '60px', borderRadius: '8px' }}></div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* Server Wake-up Message */}
                 {longLoading && (
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        style={{ color: 'var(--text-secondary)', marginTop: '1rem', maxWidth: '400px', margin: '1rem auto' }}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        style={{
+                            position: 'fixed',
+                            bottom: '2rem',
+                            right: '2rem',
+                            background: '#111',
+                            color: '#fff',
+                            padding: '1rem 2rem',
+                            borderRadius: '50px',
+                            zIndex: 9999,
+                            boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '1rem'
+                        }}
                     >
-                        The free server is waking up from sleep mode. <br />This might take up to 60 seconds. <br />Thank you for your patience! ☕
-                    </motion.p>
+                        <div style={{ width: '20px', height: '20px', border: '2px solid #333', borderTop: '2px solid #fff', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+                        <div>
+                            <span style={{ fontWeight: 700, display: 'block', fontSize: '0.9rem' }}>Waking up server...</span>
+                            <span style={{ fontSize: '0.75rem', opacity: 0.7 }}>This takes ~30s once.</span>
+                        </div>
+                    </motion.div>
                 )}
             </div>
         );
