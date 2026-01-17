@@ -99,7 +99,7 @@ const Login = () => {
                         </button>
                     </div>
 
-                    <div style={{ textAlign: 'right', marginBottom: '2rem', marginTop: '-1rem' }}>
+                    <div style={{ textAlign: 'right', marginBottom: '2rem' }}>
                         <button
                             type="button"
                             onClick={() => alert('Please contact the administrator to reset your password.')}

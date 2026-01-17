@@ -1,3 +1,5 @@
-const API_URL = import.meta.env.VITE_API_URL || 'https://blog-website-ashen-ten.vercel.app';
+const API_URL = window.location.hostname === 'localhost'
+    ? 'http://localhost:5000'
+    : 'https://blog-website-cyan.vercel.app';
 
 export default API_URL;
