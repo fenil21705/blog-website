@@ -11,12 +11,14 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 
 function App() {
   return (
     <Router>
       <div className="app">
+        <ScrollToTop />
         <Navbar />
         <main>
           <Routes>

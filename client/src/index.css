@@ -94,7 +94,7 @@ section {
 
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 3rem;
 }
 
@@ -256,8 +256,8 @@ section {
 }
 
 .hero-title {
-    font-size: 4.8rem;
-    line-height: 1;
+    font-size: clamp(2.5rem, 8vw, 4.8rem);
+    line-height: 1.1;
     font-weight: 800;
     letter-spacing: -0.04em;
 }
@@ -277,8 +277,12 @@ section {
 }
 
 @media (max-width: 1024px) {
-    .hero-title {
-        font-size: 3.8rem;
+    .container {
+        padding: 0 2rem;
+    }
+
+    .blog-grid {
+        gap: 2rem;
     }
 
     .grid-2 {
@@ -289,10 +293,6 @@ section {
 @media (max-width: 768px) {
     .container {
         padding: 0 1.5rem;
-    }
-
-    .hero-title {
-        font-size: 3rem;
     }
 
     .hero-desc {
@@ -327,15 +327,14 @@ section {
         margin-bottom: 3rem;
     }
 
-    .divider-vertical {
-        display: none;
+    .hero-spacing {
+        padding: 100px 0 60px 0;
     }
 }
 
 /* Optimized for 430px width (iPhone) */
 @media (max-width: 430px) {
     .hero-title {
-        font-size: 2.5rem !important;
         line-height: 1.1 !important;
     }
 
@@ -349,10 +348,6 @@ section {
 
     section {
         padding: 3.5rem 0;
-    }
-
-    .mobile-hide {
-        display: none !important;
     }
 
     .mobile-stack {
@@ -380,8 +375,22 @@ body.menu-open {
     padding: 120px 0 80px 0;
 }
 
-@media (max-width: 768px) {
-    .hero-spacing {
-        padding: 100px 0 60px 0;
+/* Visibility Helpers */
+@media (max-width: 900px) {
+    .mobile-hide {
+        display: none !important;
     }
+}
+
+@media (min-width: 901px) {
+    .desktop-hide-icons {
+        display: none !important;
+    }
+}
+
+
+.nav-divider {
+    background: #000 !important;
+    width: 2px !important;
+    opacity: 1 !important;
 }

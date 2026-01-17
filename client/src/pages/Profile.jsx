@@ -118,7 +118,7 @@ const Profile = () => {
         <div className="container" style={{ paddingTop: '8rem', paddingBottom: '8rem' }}>
             <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
                 <header className="mobile-center" style={{ marginBottom: '4rem' }}>
-                    <h1 className="hero-title" style={{ fontSize: '3.5rem', fontWeight: 800, marginBottom: '1rem' }}>Your Profile</h1>
+                    <h1 className="hero-title" style={{ fontWeight: 800, marginBottom: '1rem' }}>Your Profile</h1>
                     <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem' }}>Manage your account settings and view your activity.</p>
                 </header>
 
@@ -145,14 +145,14 @@ const Profile = () => {
                     )}
                 </AnimatePresence>
 
-                <div className="grid-2" style={{ gridTemplateColumns: undefined }}>
+                <div className="grid-2 mobile-stack" style={{ gap: '2rem' }}>
                     {/* Left Column: User Info Card */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             className="glass"
-                            style={{ padding: '3rem', borderRadius: '32px', textAlign: 'center' }}
+                            style={{ padding: '2rem', borderRadius: '32px', textAlign: 'center' }}
                         >
                             <div style={{ position: 'relative', display: 'inline-block', marginBottom: '2rem' }}>
                                 <div style={{
@@ -425,7 +425,7 @@ const Profile = () => {
 
                     {/* Right Column: Activity / Stats */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                        <div className="grid-2" style={{ gap: '2rem', gridTemplateColumns: undefined }}>
+                        <div className="grid-2 mobile-stack" style={{ gap: '2rem' }}>
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -463,7 +463,7 @@ const Profile = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3 }}
                             className="glass"
-                            style={{ padding: '2.5rem', borderRadius: '32px', flex: 1 }}
+                            style={{ padding: '2rem', borderRadius: '32px', flex: 1 }}
                         >
                             <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                 Recent Interactions

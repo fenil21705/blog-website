@@ -38,7 +38,7 @@ const Categories = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="gradient-text hero-title"
-                    style={{ fontSize: '3.5rem', marginBottom: '1rem' }}
+                    style={{ marginBottom: '1rem' }}
                 >
                     Explore by Category
                 </motion.h1>

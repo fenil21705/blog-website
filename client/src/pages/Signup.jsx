@@ -60,7 +60,7 @@ const Signup = () => {
                     <div style={{ display: 'inline-flex', padding: '1rem', background: 'rgba(0,0,0,0.05)', borderRadius: '20px', marginBottom: '1.5rem' }}>
                         <Feather size={32} />
                     </div>
-                    <h2 style={{ fontSize: '2.5rem', fontWeight: 800, letterSpacing: '-0.02em' }}>Create Account</h2>
+                    <h2 style={{ fontSize: 'clamp(1.8rem, 6vw, 2.5rem)', fontWeight: 800, letterSpacing: '-0.02em' }}>Create Account</h2>
                     <p style={{ color: 'var(--text-secondary)', marginTop: '0.5rem' }}>Join our community of modern thinkers.</p>
                 </div>
 

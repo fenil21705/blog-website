@@ -81,37 +81,37 @@ const BlogDetails = () => {
             <motion.div style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '4px', background: '#000', scaleX, originX: 0, zIndex: 10001 }} />
 
             {/* HEADER HERO */}
-            <header style={{ position: 'relative', height: '85vh', display: 'flex', alignItems: 'flex-end', overflow: 'hidden' }}>
+            <header style={{ position: 'relative', minHeight: '60vh', padding: '12rem 0 6rem 0', display: 'flex', alignItems: 'flex-end', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', inset: 0, zIndex: -1 }}>
                     <img
                         src={blog.featuredImage?.startsWith('/') ? `${API_URL}${blog.featuredImage}` : blog.featuredImage}
                         alt=""
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 20%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.9) 100%)' }}></div>
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.9) 100%)' }}></div>
                 </div>
 
                 <div className="container" style={{ paddingBottom: '6rem' }}>
                     <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-                        <Link to="/" style={{ color: '#fff', opacity: 0.7, fontSize: '0.85rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '3rem' }}>
+                        <Link to="/" style={{ color: '#fff', opacity: 0.8, fontSize: '0.85rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '2rem' }}>
                             <ArrowLeft size={16} /> BACK TO DISCOVER
                         </Link>
-                        <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '4px' }}>{blog.category}</span>
-                        <h1 className="hero-title" style={{ color: '#fff', margin: '1.5rem 0 2.5rem 0' }}>{blog.title}</h1>
+                        <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '4px' }}>{blog.category}</span>
+                        <h1 className="hero-title" style={{ color: '#fff', margin: '1rem 0 2rem 0' }}>{blog.title}</h1>
 
-                        <div className="mobile-stack" style={{ display: 'flex', gap: '2.5rem', color: '#fff', fontSize: '0.9rem', fontWeight: 600 }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                                <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                    <User size={18} />
+                        <div className="mobile-stack" style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', color: '#fff', fontSize: '0.85rem', fontWeight: 600 }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                                <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <User size={16} />
                                 </div>
                                 {blog.author?.username}
                             </div>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', opacity: 0.8 }}>
-                                <Calendar size={20} />
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', opacity: 0.8 }}>
+                                <Calendar size={18} />
                                 {format(new Date(blog.createdAt), 'MMMM dd, yyyy')}
                             </div>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', opacity: 0.8 }}>
-                                <Clock size={20} />
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', opacity: 0.8 }}>
+                                <Clock size={18} />
                                 {calculateReadingTime(blog.content)}
                             </div>
                         </div>
@@ -148,7 +148,7 @@ const BlogDetails = () => {
                     <div style={{ maxWidth: '820px' }}>
                         <div
                             className="blog-content"
-                            style={{ fontSize: '1.2rem', lineHeight: 1.8, color: '#333' }}
+                            style={{ fontSize: '1.2rem', lineHeight: 1.8, color: '#333', whiteSpace: 'pre-wrap' }}
                             dangerouslySetInnerHTML={{ __html: blog.content }}
                         />
 

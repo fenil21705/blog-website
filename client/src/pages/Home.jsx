@@ -98,7 +98,7 @@ const Home = () => {
                             key={cat.id}
                             to="/categories"
                             className="glass"
-                            style={{ padding: '0.6rem 1.4rem', borderRadius: '30px', fontSize: '0.85rem', fontWeight: 600 }}
+                            style={{ padding: '0.6rem 1.4rem', borderRadius: '30px', fontSize: '0.85rem', fontWeight: 600, background: '#f4f4f5', border: '1px solid rgba(0,0,0,0.05)' }}
                         >
                             {cat.name}
                         </Link>
@@ -181,17 +181,16 @@ const Home = () => {
                 <div className="glass" style={{ background: '#000', color: '#fff', padding: '6rem 2rem', borderRadius: '40px', textAlign: 'center' }}>
                     <h2 style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '1rem', color: '#fff' }}>The Weekly Digest</h2>
                     <p style={{ opacity: 0.7, maxWidth: '600px', margin: '0 auto 3rem auto' }}>Join 50,000+ creators and get the best stories in your inbox every Sunday.</p>
-                    <form className="mobile-stack" style={{ display: 'flex', gap: '1rem', maxWidth: '600px', margin: '0 auto', width: '100%' }} onSubmit={e => e.preventDefault()}>
+                    <form className="mobile-stack" style={{ display: 'flex', gap: '1rem', maxWidth: '600px', margin: '0 auto', width: '100%', alignItems: 'center' }} onSubmit={e => e.preventDefault()}>
                         <div style={{ flex: 1, minWidth: '200px' }}>
                             <input
                                 type="email"
                                 placeholder="your@email.com"
                                 style={{
                                     width: '100%',
-                                    height: '60px !important',
-                                    minHeight: '60px !important',
+                                    height: '60px',
                                     borderRadius: '16px',
-                                    padding: '0 1.5rem !important',
+                                    padding: '0 1.5rem',
                                     background: 'rgba(255,255,255,0.2)',
                                     border: '1px solid rgba(255,255,255,0.4)',
                                     color: '#fff',

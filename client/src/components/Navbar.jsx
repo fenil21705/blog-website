@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Search, Menu, Feather, X, LogOut, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -10,6 +10,7 @@ const Navbar = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
     const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem('userInfo') || '{}'));
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         const handleAuth = () => {
@@ -56,7 +57,7 @@ const Navbar = () => {
     ];
 
     return (
-        <nav style={{ position: 'sticky', top: 0, zIndex: 1000, background: '#fff', borderBottom: '1px solid rgba(0,0,0,0.06)', padding: '0.75rem 0' }}>
+        <nav style={{ position: 'sticky', top: 0, zIndex: 1000, background: 'rgba(255, 255, 255, 0.8)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(0,0,0,0.06)', padding: '0.75rem 0' }}>
             <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontWeight: 800, fontSize: '1.25rem' }}>
                     <Feather size={26} />
@@ -66,11 +67,42 @@ const Navbar = () => {
                 {/* Desktop Links */}
                 <div className="mobile-hide" style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}>
                     <div style={{ display: 'flex', gap: '2rem' }}>
-                        {links.map(l => (
-                            <Link key={l.path} to={l.path} style={{ fontSize: '0.9rem', fontWeight: 600, opacity: 0.6 }}>{l.name}</Link>
-                        ))}
+                        {links.map(l => {
+                            const isActive = location.pathname === l.path;
+                            return (
+                                <Link
+                                    key={l.path}
+                                    to={l.path}
+                                    style={{
+                                        fontSize: '0.9rem',
+                                        fontWeight: isActive ? 800 : 500,
+                                        color: '#000',
+                                        opacity: isActive ? 1 : 0.5,
+                                        transition: '0.3s',
+                                        position: 'relative',
+                                        padding: '0.5rem 0'
+                                    }}
+                                >
+                                    {l.name}
+                                    {isActive && (
+                                        <motion.div
+                                            layoutId="activeNav"
+                                            style={{
+                                                position: 'absolute',
+                                                bottom: 0,
+                                                left: 0,
+                                                right: 0,
+                                                height: '2px',
+                                                background: '#000',
+                                                borderRadius: '2px'
+                                            }}
+                                        />
+                                    )}
+                                </Link>
+                            );
+                        })}
                     </div>
-                    <div style={{ width: '1px', height: '20px', background: 'rgba(0,0,0,0.1)' }}></div>
+                    <div style={{ width: '1px', height: '24px', background: '#000', opacity: 0.1 }}></div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
                         <Search size={20} style={{ cursor: 'pointer', opacity: 0.6 }} onClick={() => setIsSearchOpen(true)} />
                         {isLoggedIn ? (
@@ -119,25 +151,43 @@ const Navbar = () => {
                             <button onClick={() => setIsMenuOpen(false)} style={{ padding: '0.75rem', background: 'var(--bg-secondary)', borderRadius: '50%' }}><X size={26} /></button>
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                            {links.map(l => (
-                                <Link key={l.path} to={l.path} onClick={() => setIsMenuOpen(false)} style={{ fontSize: '1.75rem', fontWeight: 800, padding: '1.25rem 0', borderBottom: '1px solid rgba(0,0,0,0.06)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    {l.name} <ChevronRight size={24} opacity={0.2} />
-                                </Link>
-                            ))}
+                            {links.map(l => {
+                                const isActive = location.pathname === l.path;
+                                return (
+                                    <Link
+                                        key={l.path}
+                                        to={l.path}
+                                        onClick={() => setIsMenuOpen(false)}
+                                        style={{
+                                            fontSize: '1.75rem',
+                                            fontWeight: isActive ? 800 : 500,
+                                            opacity: isActive ? 1 : 0.4,
+                                            padding: '1.25rem 0',
+                                            borderBottom: '1px solid rgba(0,0,0,0.06)',
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            alignItems: 'center',
+                                            transition: '0.3s'
+                                        }}
+                                    >
+                                        {l.name} <ChevronRight size={24} style={{ opacity: isActive ? 1 : 0.2 }} />
+                                    </Link>
+                                );
+                            })}
                         </div>
                         <div style={{ marginTop: 'auto', paddingBottom: '2rem' }}>
                             {isLoggedIn ? (
-                                <div style={{ background: 'var(--bg-secondary)', padding: '1.5rem', borderRadius: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <div style={{ paddingTop: '1.5rem', marginTop: '1.5rem', borderTop: '1px solid rgba(0,0,0,0.06)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                     <Link to="/profile" onClick={() => setIsMenuOpen(false)} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                        <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: '#000', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '1.2rem' }}>
+                                        <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: '#000', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '1.1rem' }}>
                                             {userInfo.username?.[0].toUpperCase()}
                                         </div>
                                         <div>
                                             <div style={{ fontWeight: 800, fontSize: '1.1rem' }}>{userInfo.username}</div>
-                                            <div style={{ fontSize: '0.8rem', opacity: 0.5 }}>Profile Settings</div>
+                                            <div style={{ fontSize: '0.85rem', opacity: 0.5 }}>Profile Settings</div>
                                         </div>
                                     </Link>
-                                    <button onClick={handleLogout} style={{ color: 'var(--danger)', fontWeight: 800, padding: '0.5rem' }}>Logout</button>
+                                    <button onClick={handleLogout} style={{ color: 'var(--danger)', fontWeight: 800, padding: '0.6rem 1.2rem', background: 'var(--bg-secondary)', borderRadius: '12px', fontSize: '0.85rem' }}>Logout</button>
                                 </div>
                             ) : (
                                 <Link to="/login" onClick={() => setIsMenuOpen(false)} className="btn btn-primary" style={{ width: '100%', height: '60px' }}>Join the Inner Circle</Link>
@@ -148,8 +198,8 @@ const Navbar = () => {
             </AnimatePresence>
 
             <style>{`
-                @media (min-width: 901px) { .desktop-hide-icons { display: none; } }
-                @media (max-width: 900px) { .mobile-hide { display: none; } }
+                @media (min-width: 901px) { .desktop-hide-icons { display: none !important; } }
+                @media (max-width: 900px) { .mobile-hide { display: none !important; } }
             `}</style>
         </nav>
     );
