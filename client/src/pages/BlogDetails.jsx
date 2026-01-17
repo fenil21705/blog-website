@@ -19,6 +19,7 @@ const BlogDetails = () => {
     const navigate = useNavigate();
     const [blog, setBlog] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [longLoading, setLongLoading] = useState(false);
     const [interactions, setInteractions] = useState({ likesCount: 0, userLiked: false, comments: [] });
     const [commentText, setCommentText] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -35,6 +36,8 @@ const BlogDetails = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        const timer = setTimeout(() => setLongLoading(true), 2000);
+
         const fetchBlog = async () => {
             try {
                 const { data: blogData } = await axios.get(`${API_URL}/api/blogs/${slug}`);
@@ -47,14 +50,16 @@ const BlogDetails = () => {
                 });
                 setInteractions(interactionRes.data);
 
-
                 setLoading(false);
+                clearTimeout(timer);
             } catch (error) {
                 console.error('Error fetching blog:', error);
                 setLoading(false);
+                clearTimeout(timer);
             }
         };
         fetchBlog();
+        return () => clearTimeout(timer);
     }, [slug]);
 
     const handleLike = async () => {
@@ -117,7 +122,51 @@ const BlogDetails = () => {
         }
     };
 
-    if (loading) return <div className="container" style={{ padding: '8rem', textAlign: 'center' }}>Loading story...</div>;
+    if (loading) return (
+        <div>
+            <div className="skeleton" style={{ height: '80vh', width: '100%' }}></div>
+            <div className="container" style={{ marginTop: '6rem', display: 'grid', gridTemplateColumns: 'minmax(0, 100px) 1fr minmax(0, 100px)', gap: '4rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'center' }}>
+                    <div className="skeleton" style={{ width: '50px', height: '50px', borderRadius: '50%' }}></div>
+                    <div className="skeleton" style={{ width: '40px', height: '40px', borderRadius: '50%' }}></div>
+                </div>
+                <div>
+                    <div className="skeleton" style={{ width: '60%', height: '50px', marginBottom: '2rem', borderRadius: '8px' }}></div>
+                    <div className="skeleton" style={{ width: '100%', height: '20px', marginBottom: '1rem', borderRadius: '4px' }}></div>
+                    <div className="skeleton" style={{ width: '100%', height: '20px', marginBottom: '1rem', borderRadius: '4px' }}></div>
+                    <div className="skeleton" style={{ width: '90%', height: '20px', marginBottom: '1rem', borderRadius: '4px' }}></div>
+                    <div className="skeleton" style={{ width: '95%', height: '20px', marginBottom: '1rem', borderRadius: '4px' }}></div>
+                </div>
+            </div>
+            {/* Server Wake-up Message */}
+            {longLoading && (
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    style={{
+                        position: 'fixed',
+                        bottom: '2rem',
+                        right: '2rem',
+                        background: '#111',
+                        color: '#fff',
+                        padding: '1rem 2rem',
+                        borderRadius: '50px',
+                        zIndex: 9999,
+                        boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '1rem'
+                    }}
+                >
+                    <div style={{ width: '20px', height: '20px', border: '2px solid #333', borderTop: '2px solid #fff', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+                    <div>
+                        <span style={{ fontWeight: 700, display: 'block', fontSize: '0.9rem' }}>Waking up server...</span>
+                        <span style={{ fontSize: '0.75rem', opacity: 0.7 }}>This takes ~30s once.</span>
+                    </div>
+                </motion.div>
+            )}
+        </div>
+    );
     if (!blog) return <div className="container" style={{ padding: '8rem', textAlign: 'center' }}>Blog not found.</div>;
 
     return (
