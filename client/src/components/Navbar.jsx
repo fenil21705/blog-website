@@ -57,77 +57,79 @@ const Navbar = () => {
     ];
 
     return (
-        <nav style={{ position: 'sticky', top: 0, zIndex: 1000, background: 'rgba(255, 255, 255, 0.8)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(0,0,0,0.06)', padding: '0.75rem 0' }}>
-            <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontWeight: 800, fontSize: '1.25rem' }}>
-                    <Feather size={26} />
-                    <span className="gradient-text">MODERN BLOG</span>
-                </Link>
+        <>
+            <nav style={{ position: 'sticky', top: 0, zIndex: 1000, background: 'rgba(255, 255, 255, 0.8)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(0,0,0,0.06)', padding: '0.75rem 0' }}>
+                <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontWeight: 800, fontSize: '1.25rem' }}>
+                        <Feather size={26} />
+                        <span className="gradient-text">MODERN BLOG</span>
+                    </Link>
 
-                {/* Desktop Links */}
-                <div className="mobile-hide" style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}>
-                    <div style={{ display: 'flex', gap: '2rem' }}>
-                        {links.map(l => {
-                            const isActive = location.pathname === l.path;
-                            return (
-                                <Link
-                                    key={l.path}
-                                    to={l.path}
-                                    style={{
-                                        fontSize: '0.9rem',
-                                        fontWeight: isActive ? 800 : 500,
-                                        color: '#000',
-                                        opacity: isActive ? 1 : 0.5,
-                                        transition: '0.3s',
-                                        position: 'relative',
-                                        padding: '0.5rem 0'
-                                    }}
-                                >
-                                    {l.name}
-                                    {isActive && (
-                                        <motion.div
-                                            layoutId="activeNav"
-                                            style={{
-                                                position: 'absolute',
-                                                bottom: 0,
-                                                left: 0,
-                                                right: 0,
-                                                height: '2px',
-                                                background: '#000',
-                                                borderRadius: '2px'
-                                            }}
-                                        />
-                                    )}
-                                </Link>
-                            );
-                        })}
+                    {/* Desktop Links */}
+                    <div className="mobile-hide" style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}>
+                        <div style={{ display: 'flex', gap: '2rem' }}>
+                            {links.map(l => {
+                                const isActive = location.pathname === l.path;
+                                return (
+                                    <Link
+                                        key={l.path}
+                                        to={l.path}
+                                        style={{
+                                            fontSize: '0.9rem',
+                                            fontWeight: isActive ? 800 : 500,
+                                            color: '#000',
+                                            opacity: isActive ? 1 : 0.5,
+                                            transition: '0.3s',
+                                            position: 'relative',
+                                            padding: '0.5rem 0'
+                                        }}
+                                    >
+                                        {l.name}
+                                        {isActive && (
+                                            <motion.div
+                                                layoutId="activeNav"
+                                                style={{
+                                                    position: 'absolute',
+                                                    bottom: 0,
+                                                    left: 0,
+                                                    right: 0,
+                                                    height: '2px',
+                                                    background: '#000',
+                                                    borderRadius: '2px'
+                                                }}
+                                            />
+                                        )}
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                        <div style={{ width: '1px', height: '24px', background: '#000', opacity: 0.1 }}></div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                            <Search size={20} style={{ cursor: 'pointer', opacity: 0.6 }} onClick={() => setIsSearchOpen(true)} />
+                            {isLoggedIn ? (
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                    <Link to="/profile" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                                        <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#000', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '0.9rem' }}>
+                                            {userInfo.username?.[0].toUpperCase()}
+                                        </div>
+                                        <span style={{ fontWeight: 700 }}>{userInfo.username}</span>
+                                    </Link>
+                                    <button onClick={handleLogout} style={{ background: 'none', opacity: 0.4 }}><LogOut size={20} /></button>
+                                </div>
+                            ) : (
+                                <Link to="/login" className="btn btn-primary" style={{ padding: '0 1.5rem', height: '42px', borderRadius: '50px', fontSize: '0.85rem' }}>Join</Link>
+                            )}
+                        </div>
                     </div>
-                    <div style={{ width: '1px', height: '24px', background: '#000', opacity: 0.1 }}></div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                        <Search size={20} style={{ cursor: 'pointer', opacity: 0.6 }} onClick={() => setIsSearchOpen(true)} />
-                        {isLoggedIn ? (
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                <Link to="/profile" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                                    <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#000', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '0.9rem' }}>
-                                        {userInfo.username?.[0].toUpperCase()}
-                                    </div>
-                                    <span style={{ fontWeight: 700 }}>{userInfo.username}</span>
-                                </Link>
-                                <button onClick={handleLogout} style={{ background: 'none', opacity: 0.4 }}><LogOut size={20} /></button>
-                            </div>
-                        ) : (
-                            <Link to="/login" className="btn btn-primary" style={{ padding: '0 1.5rem', height: '42px', borderRadius: '50px', fontSize: '0.85rem' }}>Join</Link>
-                        )}
+
+                    {/* Mobile Icons */}
+                    <div className="desktop-hide-icons" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                        <div onClick={() => setIsSearchOpen(true)} style={{ padding: '0.5rem', opacity: 0.7 }}><Search size={22} /></div>
+                        <div onClick={() => setIsMenuOpen(true)} style={{ padding: '0.5rem', opacity: 0.7 }}><Menu size={24} /></div>
                     </div>
                 </div>
 
-                {/* Mobile Icons */}
-                <div className="desktop-hide-icons" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    <div onClick={() => setIsSearchOpen(true)} style={{ padding: '0.5rem', opacity: 0.7 }}><Search size={22} /></div>
-                    <div onClick={() => setIsMenuOpen(true)} style={{ padding: '0.5rem', opacity: 0.7 }}><Menu size={24} /></div>
-                </div>
-            </div>
-
+            </nav>
             {/* FULLSCREEN MOBILE SEARCH */}
             <AnimatePresence>
                 {isSearchOpen && (
@@ -143,7 +145,7 @@ const Navbar = () => {
             {/* SOLID MOBILE MENU */}
             <AnimatePresence>
                 {isMenuOpen && (
-                    <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ type: 'spring', damping: 25, stiffness: 200 }} style={{ position: 'fixed', inset: 0, background: '#fff', zIndex: 10000, padding: '2rem', display: 'flex', flexDirection: 'column' }}>
+                    <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ type: 'spring', damping: 25, stiffness: 200 }} style={{ position: 'fixed', inset: 0, background: '#ffffff', zIndex: 10000, padding: '2rem', display: 'flex', flexDirection: 'column' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4rem' }}>
                             <Link to="/" onClick={() => setIsMenuOpen(false)} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 800 }}>
                                 <Feather size={24} /> MODERN BLOG
@@ -201,7 +203,7 @@ const Navbar = () => {
                 @media (min-width: 901px) { .desktop-hide-icons { display: none !important; } }
                 @media (max-width: 900px) { .mobile-hide { display: none !important; } }
             `}</style>
-        </nav>
+        </>
     );
 };
 
