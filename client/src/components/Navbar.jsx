@@ -20,11 +20,20 @@ const Navbar = () => {
         return () => window.removeEventListener('authChange', handleAuthChange);
     }, []);
 
+    useEffect(() => {
+        if (isMenuOpen) {
+            document.body.classList.add('menu-open');
+        } else {
+            document.body.classList.remove('menu-open');
+        }
+    }, [isMenuOpen]);
+
     const handleSearch = (e) => {
         e.preventDefault();
         if (searchQuery.trim()) {
             navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
             setIsSearchOpen(false);
+            setIsMenuOpen(false);
             setSearchQuery('');
         }
     };
@@ -33,6 +42,7 @@ const Navbar = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('userInfo');
         window.dispatchEvent(new Event('authChange'));
+        setIsMenuOpen(false);
         navigate('/login');
     };
 
@@ -111,7 +121,7 @@ const Navbar = () => {
                             <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
                                 <Link
                                     to="/profile"
-                                    style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', transition: '0.3s' }}
+                                    style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}
                                 >
                                     <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#000', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', fontWeight: 700 }}>
                                         {userInfo.username?.[0]?.toUpperCase()}
@@ -193,7 +203,7 @@ const Navbar = () => {
                                         outline: 'none'
                                     }}
                                 />
-                                <button type="submit" className="btn btn-primary" style={{ padding: '0.8rem 1.5rem' }}>Go</button>
+                                <button type="submit" className="btn btn-primary" style={{ padding: '0.8rem 1.5rem', width: 'auto' }}>Go</button>
                             </form>
                         </div>
                     </motion.div>
@@ -204,7 +214,6 @@ const Navbar = () => {
             <AnimatePresence>
                 {isMenuOpen && (
                     <>
-                        {/* Overlay */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -216,12 +225,11 @@ const Navbar = () => {
                                 left: 0,
                                 right: 0,
                                 bottom: 0,
-                                background: 'rgba(0,0,0,0.2)',
-                                backdropFilter: 'blur(4px)',
+                                background: 'rgba(0,0,0,0.4)',
+                                backdropFilter: 'blur(8px)',
                                 zIndex: 998
                             }}
                         />
-                        {/* Menu Content */}
                         <motion.div
                             initial={{ x: '100%' }}
                             animate={{ x: 0 }}
@@ -232,38 +240,41 @@ const Navbar = () => {
                                 top: '60px',
                                 right: 0,
                                 bottom: 0,
-                                width: '80%',
-                                maxWidth: '320px',
+                                width: '85%',
+                                maxWidth: '340px',
                                 background: '#fff',
                                 zIndex: 999,
-                                padding: '2rem',
-                                boxShadow: '-10px 0 30px rgba(0,0,0,0.1)'
+                                padding: '2.5rem',
+                                boxShadow: '-10px 0 30px rgba(0,0,0,0.1)',
+                                display: 'flex',
+                                flexDirection: 'column'
                             }}
                         >
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1 }}>
                                 {navItems.map((item) => (
                                     <Link
                                         key={item}
                                         to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
                                         onClick={() => setIsMenuOpen(false)}
                                         style={{
-                                            fontSize: '1.25rem',
+                                            fontSize: '1.2rem',
                                             fontWeight: 700,
-                                            padding: '1rem 0',
+                                            padding: '1.2rem 0',
                                             borderBottom: '1px solid var(--border-color)',
                                             display: 'flex',
                                             justifyContent: 'space-between',
-                                            alignItems: 'center'
+                                            alignItems: 'center',
+                                            color: 'var(--text-primary)'
                                         }}
                                     >
                                         {item}
-                                        <ChevronRight size={20} opacity={0.3} />
+                                        <ChevronRight size={18} opacity={0.3} />
                                     </Link>
                                 ))}
 
-                                <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                <div style={{ marginTop: 'auto', paddingTop: '2rem' }}>
                                     {isLoggedIn ? (
-                                        <>
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                             <Link
                                                 to="/profile"
                                                 onClick={() => setIsMenuOpen(false)}
@@ -271,45 +282,47 @@ const Navbar = () => {
                                                     display: 'flex',
                                                     alignItems: 'center',
                                                     gap: '1rem',
-                                                    padding: '1rem',
+                                                    padding: '1.25rem',
                                                     background: 'var(--bg-secondary)',
-                                                    borderRadius: '16px'
+                                                    borderRadius: '20px',
+                                                    textDecoration: 'none',
+                                                    color: 'inherit'
                                                 }}
                                             >
-                                                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#000', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700 }}>
+                                                <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: '#000', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '1.1rem' }}>
                                                     {userInfo.username?.[0]?.toUpperCase()}
                                                 </div>
                                                 <div>
-                                                    <div style={{ fontWeight: 700 }}>{userInfo.username}</div>
-                                                    <div style={{ fontSize: '0.8rem', opacity: 0.6 }}>View Profile</div>
+                                                    <div style={{ fontWeight: 800, fontSize: '1.05rem' }}>{userInfo.username}</div>
+                                                    <div style={{ fontSize: '0.85rem', opacity: 0.5 }}>Account Settings</div>
                                                 </div>
                                             </Link>
                                             <button
                                                 onClick={handleLogout}
                                                 style={{
                                                     width: '100%',
-                                                    padding: '1rem',
-                                                    borderRadius: '12px',
-                                                    background: 'none',
-                                                    border: '1px solid var(--border-color)',
-                                                    fontWeight: 600,
+                                                    padding: '1.25rem',
+                                                    borderRadius: '16px',
+                                                    background: 'rgba(255, 68, 68, 0.05)',
+                                                    border: '1px solid rgba(255, 68, 68, 0.1)',
+                                                    fontWeight: 700,
                                                     color: '#ff4444',
                                                     display: 'flex',
                                                     alignItems: 'center',
                                                     justifyContent: 'center',
-                                                    gap: '0.5rem'
+                                                    gap: '0.75rem'
                                                 }}
                                             >
                                                 <LogOut size={20} /> Sign Out
                                             </button>
-                                        </>
+                                        </div>
                                     ) : (
-                                        <>
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                             <Link
                                                 to="/login"
                                                 onClick={() => setIsMenuOpen(false)}
                                                 className="btn btn-outline"
-                                                style={{ justifyContent: 'center' }}
+                                                style={{ height: '56px' }}
                                             >
                                                 Sign In
                                             </Link>
@@ -317,11 +330,11 @@ const Navbar = () => {
                                                 to="/signup"
                                                 onClick={() => setIsMenuOpen(false)}
                                                 className="btn btn-primary"
-                                                style={{ justifyContent: 'center' }}
+                                                style={{ height: '56px' }}
                                             >
                                                 Join Now
                                             </Link>
-                                        </>
+                                        </div>
                                     )}
                                 </div>
                             </div>
