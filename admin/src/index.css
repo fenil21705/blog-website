@@ -135,3 +135,24 @@ td {
   background: rgba(108, 117, 125, 0.1);
   color: var(--text-secondary);
 }
+
+/* Skeleton Loader */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton {
+  background: #e9ecef;
+  background-image: linear-gradient(to right, #e9ecef 0%, #dee2e6 20%, #e9ecef 40%, #e9ecef 100%);
+  background-repeat: no-repeat;
+  background-size: 1000px 100%;
+  animation: shimmer 1.5s infinite linear forwards;
+  position: relative;
+  border-radius: 4px;
+}

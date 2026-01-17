@@ -55,7 +55,41 @@ const CategoriesManager = () => {
         }
     };
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return (
+        <div className="container">
+            <header style={{ marginBottom: '3rem' }}>
+                <div className="skeleton" style={{ width: '300px', height: '40px', marginBottom: '1rem' }}></div>
+                <div className="skeleton" style={{ width: '400px', height: '20px' }}></div>
+            </header>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '4rem' }}>
+                <div className="glass" style={{ padding: '2rem', borderRadius: '24px', height: '400px' }}>
+                    <div className="skeleton" style={{ width: '50%', height: '20px', marginBottom: '2rem' }}></div>
+                    <div className="skeleton" style={{ width: '100%', height: '40px', marginBottom: '1.5rem' }}></div>
+                    <div className="skeleton" style={{ width: '100%', height: '40px' }}></div>
+                </div>
+                <div className="glass" style={{ borderRadius: '24px', overflow: 'hidden', padding: '1rem' }}>
+                    <table style={{ width: '100%' }}>
+                        <thead>
+                            <tr style={{ background: 'var(--bg-accent)' }}>
+                                <th style={{ padding: '1.2rem' }}><div className="skeleton" style={{ width: '100px', height: '20px' }}></div></th>
+                                <th style={{ padding: '1.2rem' }}><div className="skeleton" style={{ width: '100px', height: '20px' }}></div></th>
+                                <th style={{ padding: '1.2rem' }}><div className="skeleton" style={{ width: '50px', height: '20px', float: 'right' }}></div></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {[1, 2, 3, 4].map(i => (
+                                <tr key={i} style={{ borderBottom: '1px solid var(--border)' }}>
+                                    <td style={{ padding: '1.2rem' }}><div className="skeleton" style={{ width: '60%', height: '20px' }}></div></td>
+                                    <td style={{ padding: '1.2rem' }}><div className="skeleton" style={{ width: '40%', height: '20px' }}></div></td>
+                                    <td style={{ padding: '1.2rem' }}><div className="skeleton" style={{ width: '30px', height: '30px', float: 'right' }}></div></td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    );
 
     return (
         <div className="container">

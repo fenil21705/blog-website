@@ -49,7 +49,44 @@ const PostsManager = () => {
         }
     };
 
-    if (loading) return <div style={{ padding: '2rem' }}>Loading posts...</div>;
+    if (loading) return (
+        <div>
+            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
+                <div>
+                    <div className="skeleton" style={{ width: '250px', height: '40px', marginBottom: '0.5rem' }}></div>
+                    <div className="skeleton" style={{ width: '400px', height: '20px' }}></div>
+                </div>
+                <div className="skeleton" style={{ width: '180px', height: '45px', borderRadius: '12px' }}></div>
+            </header>
+            <div className="glass" style={{ borderRadius: '24px', padding: '1.5rem', marginBottom: '2rem' }}>
+                <div className="skeleton" style={{ width: '100%', height: '45px', borderRadius: '12px' }}></div>
+            </div>
+            <div className="glass" style={{ borderRadius: '24px', overflow: 'hidden', padding: '0' }}>
+                <table style={{ margin: 0, width: '100%' }}>
+                    <thead>
+                        <tr style={{ background: 'var(--bg-accent)' }}>
+                            <th style={{ padding: '1.2rem' }}><div className="skeleton" style={{ width: '100px', height: '20px' }}></div></th>
+                            <th style={{ padding: '1.2rem' }}><div className="skeleton" style={{ width: '80px', height: '20px' }}></div></th>
+                            <th style={{ padding: '1.2rem' }}><div className="skeleton" style={{ width: '60px', height: '20px' }}></div></th>
+                            <th style={{ padding: '1.2rem' }}><div className="skeleton" style={{ width: '120px', height: '20px' }}></div></th>
+                            <th style={{ padding: '1.2rem' }}><div className="skeleton" style={{ width: '100px', height: '20px', float: 'right' }}></div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {[1, 2, 3, 4, 5].map(i => (
+                            <tr key={i} style={{ borderBottom: '1px solid var(--border)' }}>
+                                <td style={{ padding: '1.2rem' }}><div className="skeleton" style={{ width: '70%', height: '20px' }}></div></td>
+                                <td style={{ padding: '1.2rem' }}><div className="skeleton" style={{ width: '90px', height: '24px', borderRadius: '8px' }}></div></td>
+                                <td style={{ padding: '1.2rem' }}><div className="skeleton" style={{ width: '50px', height: '20px', borderRadius: '20px' }}></div></td>
+                                <td style={{ padding: '1.2rem' }}><div className="skeleton" style={{ width: '100px', height: '20px' }}></div></td>
+                                <td style={{ padding: '1.2rem' }}><div className="skeleton" style={{ width: '120px', height: '30px', float: 'right' }}></div></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
 
     return (
         <div>
