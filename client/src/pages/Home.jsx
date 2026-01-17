@@ -112,8 +112,7 @@ const Home = () => {
     return (
         <div style={{ overflow: 'hidden' }}>
             {/* 2. Hero Section */}
-            <section style={{
-                padding: '10rem 0 6rem 0',
+            <section className="hero-spacing" style={{
                 background: 'radial-gradient(circle at top right, rgba(0,0,0,0.03) 0%, transparent 40%)',
                 textAlign: 'center'
             }}>
@@ -122,15 +121,16 @@ const Home = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        style={{ fontSize: '4.5rem', fontWeight: 800, letterSpacing: '-0.04em', lineHeight: 1.1, marginBottom: '1.5rem' }}
+                        className="hero-title gradient-text"
+                        style={{ marginBottom: '1.5rem' }}
                     >
-                        Insights for the <br /><span className="gradient-text">Modern Creator.</span>
+                        Insights for the <br />Modern Creator.
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.3, duration: 0.8 }}
-                        style={{ color: 'var(--text-secondary)', fontSize: '1.25rem', maxWidth: '600px', margin: '0 auto 3rem auto' }}
+                        className="hero-desc"
                     >
                         Exploring the intersection of technology, minimalism, and high-end digital lifestyle.
                     </motion.p>
@@ -138,7 +138,7 @@ const Home = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5 }}
-                        style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}
+                        style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}
                     >
                         <a href="#latest" className="btn btn-primary" style={{ padding: '1rem 2.5rem', borderRadius: '50px' }}>Read Latest Posts</a>
                         <Link to="/about" className="btn btn-outline" style={{ padding: '1rem 2.5rem', borderRadius: '50px' }}>Start Here</Link>
